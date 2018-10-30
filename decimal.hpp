@@ -1,10 +1,8 @@
 #pragma once
 #include <cstdint>
 #include <iostream>
-#include <cstdlib>
+#include <cstdlib> //for exit()
 #include <string>
-#include <sstream>
-#include <cmath>
 
 class decimal {
   private:

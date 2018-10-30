@@ -6,10 +6,12 @@
 
 class decimal {
   private:
+	// a large integer holding the significant values of the decimal
 	int64_t significand = 0;
+	// a small integer holding the scientific notation exponent of the decimal
 	int8_t power = 0;
 	// construct with the internal desired values, not for public interface
-	// for use by friend classes
+	// for use by friend functions
 	decimal(int64_t significand, int8_t power);
 	// this could possibly be more efficient as a proper member class
 	static int64_t tensPow(int64_t significand, int8_t power);

@@ -11,6 +11,7 @@ class decimal {
   public:
 	decimal();
 	decimal(const decimal &);
+	decimal(decimal&&);
 	decimal(int64_t);
 	decimal(const char *);
 	decimal(int64_t significand, int8_t power);
@@ -44,5 +45,5 @@ class decimal {
 	friend bool operator==(int64_t, const decimal &);
 
 	// for making a literal of type "2.07"d
-	friend decimal &operator"" _d(const char *);
+	friend decimal operator"" _d(const char *,size_t);
 };

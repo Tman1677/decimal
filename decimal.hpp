@@ -11,6 +11,7 @@ class decimal {
 	int64_t significand = 0;
 	int8_t power = 0;
 	//construct with the internal desired values, not for public interface
+	//for use by friend classes
 	decimal(int64_t significand, int8_t power);
 	//this could possibly be more efficient as a proper member class
 	static int64_t tensPow(int64_t significand, int8_t power);
@@ -69,6 +70,12 @@ class decimal {
 };
 
 decimal::decimal() {}
+
+//private constructor only to be used by friend classes
+decimal::decimal(int64_t significand, int8_t power) {
+	this->significand = significand;
+	this->power = power;
+}
 
 decimal::decimal(const decimal& copier) {
 	significand = copier.significand;

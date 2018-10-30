@@ -156,8 +156,20 @@ std::istream &operator>>(std::istream & instream, decimal & result) {
 	return instream;
 }
 std::ostream &operator<<(std::ostream & outstream, const decimal & object) {
-	//probably a better way to do this
-	outstream << static_cast<double>(object.significand) * std::pow(10.0,object.power);
+	//needs optimization badly
+	std::string outstring = std::to_string(object.significand);
+	if(object.power > 0) {
+		for(int8_t i = 0; i < object.power; i++) {
+			outstring.push_back('0');
+		}
+	} else if(object.power < 0) {
+		if(object.power + outstring.length() == 0) {
+			outstring.insert(0,"0.");
+		} else {
+			outstring.insert(outstring.begin() + outstring.length() + object.power,'.');
+		}
+	}
+	outstream << outstring;
 	return outstream;
 }
 int64_t decimal::tensPow(int64_t significand, int8_t power) {

@@ -44,6 +44,11 @@ class decimal {
 	friend decimal operator*(const decimal &, const decimal &);
 	friend decimal operator*(int64_t, const decimal &);
 	friend decimal operator*(const decimal &, int64_t);
+	// division is excluded on purpose as that could lead to a repeating decimal
+	// that couldn't be represented without a possible loss of data. Maybe
+	// there's a future opportunity there but until a surefire way of doing it is
+	// thought of it's better to leave it out
+
 	// unary operator
 	friend decimal operator-(const decimal &);
 
@@ -59,12 +64,16 @@ class decimal {
 	decimal &operator-=(int64_t);
 	decimal &operator*=(const decimal &);
 	decimal &operator*=(int64_t);
+	// division is excluded on purpose as that could lead to a repeating decimal
+	// that couldn't be represented without a possible loss of data. Maybe
+	// there's a future opportunity there but until a surefire way of doing it is
+	// thought of it's better to leave it out
 
 	// basic equality checks
 	friend bool operator==(const decimal &, const decimal &);
 	friend bool operator==(const decimal &, int64_t);
 	friend bool operator==(int64_t, const decimal &);
 
-	// for making a literal of type "2.07"d
+	// for making a literal of type "2.07"_d
 	friend decimal operator"" _d(const char *, size_t);
 };
